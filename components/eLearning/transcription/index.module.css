@@ -1,0 +1,27 @@
+
+
+.DraftEditor-root {
+  //background: #f9f9f9;
+  background: transparent;
+}
+
+/*
+Giving the editor a oveflow : Controls the amount of screen the editor
+ takes up when scroll to view is true 
+https://github.com/facebook/draft-js/issues/528
+*/
+
+.editor :global(.public-DraftEditor-content) {
+  max-height: 300px;
+  overflow: auto;
+  padding: 8px 16px;
+  background-color: transparent;
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+
+  .editor :global(.public-DraftEditor-content) {
+    margin: 0 auto;
+  }
+}
