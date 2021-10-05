@@ -16,6 +16,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { API_URL } from '../utils/urls'
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import { fetchAPI } from '../utils/urls'
+//import 'styles/CardSectionStyles.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import "react-circular-progressbar/dist/styles.css";
 import Comments from '../components/comments/comment'
 import Notes from '../components/notes/notes'
@@ -415,15 +417,16 @@ if (!loading)
       {/*<Layout categories={categories}> */}
       {/* <Seo metadata={metadata} /> */}
       
-      <Container fluid>
-        <Row style={{ backgroundColor: "rgba(49, 130, 206)", color: "white" }}>
+      <main style={{width:"100%"}}>
+        <div style={{ backgroundColor: "rgba(49, 130, 206)", color: "white", display:"flex"}}>
           <Col>
-            <Link href="/[[...slug]]" as="/">
+            <Link href="/">
               <a>
-                <img
-                  src='vercel.svg'
+                <Image
+                  src='/vercel.svg'
                   width={60}
                   height={60}
+                  alt="logo"
                 />
               </a>
             </Link>
@@ -450,10 +453,10 @@ if (!loading)
               </CircularProgressbarWithChildren>
             </div>
           </Col>
-        </Row>
-        <Row>
+        </div>
+        <div style={{display:"flex"}}>
           <Col>
-            <Row>
+            <div>
               <ReactPlayer
                 ref={videoRef}
                 onTimeUpdate = { handleTimeUpdate }
@@ -473,12 +476,12 @@ if (!loading)
                 controls
                 onProgress={handleWatchComplete}
               />
-            </Row>
+            </div>
            {/* <Row>
               <Button onClick={seek}>Bookmark</Button>
               <Button onClick={addNoteFunction}>Add Note</Button>
            </Row> */}
-            <Row>
+            <div>
 {/** TODO Needs to be placed in a component for readability i.e mobile tab and desktop tab */}
              {isBreakpoint?(
               <STabs
@@ -756,7 +759,7 @@ if (!loading)
                       </div>
                       {resourceToggle==lesson.id && lesson.resources.length >=1 &&( 
                       <div>
-                      <ul class="cards" style={{justifyContent:"center"}}>
+                      <ul className="cards" style={{justifyContent:"center"}}>
                       {lesson.resources.map((resource, index) =>{
                         
                           let ext = resource.ext
@@ -784,12 +787,12 @@ if (!loading)
                         
                         return(
                     <>
- <li class="cards_item">
- <div class="card">
+ <li className="cards_item">
+ <div className="card">
    
-   <div class="card_content">
-     <h2 class="card_title">{resource.caption}</h2>
-     <div class="card_image">
+   <div className="card_content">
+     <h2 className="card_title">{resource.caption}</h2>
+     <div className="card_image">
      <Image
                       src={`${image}`}
                       alt={`${name}`}
@@ -797,7 +800,7 @@ if (!loading)
                       height={80}
                     />
        </div>
-     <p class="card_text">{resource.name}</p>
+     <p className="card_text">{resource.name}</p>
      {/*<button class="btn card_btn">Download</button>*/}
    </div>
  </div>
@@ -822,7 +825,7 @@ if (!loading)
                 </STabPanel>
               </STabs>
               )}
-            </Row>
+            </div>
           </Col>
           {/** TODO Move to component for readabily */}
 {!isBreakpoint?(<Col
@@ -940,8 +943,8 @@ if (!loading)
           </Col>):
           null}
           
-        </Row>
-      </Container>
+        </div>
+      </main>
     </>
   );
 };
