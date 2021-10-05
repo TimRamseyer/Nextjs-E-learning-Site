@@ -407,9 +407,9 @@ if (loading) return (
   </div>
 )
 
-if (!loading && !session) return <p>You Must be logged in to view this course</p>
+//if (!loading && !session) return <p>You Must be logged in to view this course</p>
 
-
+if (!loading)
   return (
     <>
       {/*<Layout categories={categories}> */}
@@ -421,7 +421,7 @@ if (!loading && !session) return <p>You Must be logged in to view this course</p
             <Link href="/[[...slug]]" as="/">
               <a>
                 <img
-                  src={API_URL + global.navbar.logo.url}
+                  src='vercel.svg'
                   width={60}
                   height={60}
                 />
@@ -945,7 +945,11 @@ if (!loading && !session) return <p>You Must be logged in to view this course</p
     </>
   );
 };
-
+/**
+ * Allows dynamic SSR when used in [slug].js
+ * @param {*} param0 
+ * @returns 
+ */
 /*export async function getStaticPaths() {
   const courses = await fetchAPI("/courses");
   
@@ -957,11 +961,13 @@ if (!loading && !session) return <p>You Must be logged in to view this course</p
     })),
     fallback: false,
   };
-}
+}*/
 
 export async function getStaticProps({ params }) {
   const courses = await fetchAPI(
-    `/courses?slug=${params.slug}&status=published`
+   // `/courses?slug=${params.slug}&status=published`
+   `/courses?slug=course-one&status=published`
+
   );
  
   const categories = await fetchAPI("/categories");
@@ -970,7 +976,7 @@ export async function getStaticProps({ params }) {
     props: { course: courses[0], categories },
     revalidate: 1,
   };
-} */
+} 
 
 const STabs = styled(Tabs)`
   font-family: inherit;
