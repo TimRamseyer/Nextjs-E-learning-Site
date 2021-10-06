@@ -404,9 +404,9 @@ if (loading) return (
   </div>
 )
 
-if (!loading && !session) return <p>You Must be logged in to view this course</p>
+//if (!loading && !session) return <p>You Must be logged in to view this course</p>
 
-//if (!loading)
+if (!loading)
   return (
     <>
      
