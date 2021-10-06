@@ -8,16 +8,11 @@ import cookie from 'js-cookie'
 import styled from "styled-components";
 import ClipLoader from "react-spinners/ClipLoader";
 import Transcription from '../components/eLearning/transcription'
-import { Container } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { API_URL } from '../utils/urls'
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import { fetchAPI } from '../utils/urls'
 //import 'styles/CardSectionStyles.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import "react-circular-progressbar/dist/styles.css";
 import Comments from '../components/comments/comment'
 import Notes from '../components/notes/notes'
@@ -414,12 +409,11 @@ if (loading) return (
 if (!loading)
   return (
     <>
-      {/*<Layout categories={categories}> */}
-      {/* <Seo metadata={metadata} /> */}
+     
       
-      <main style={{width:"100%"}}>
-        <div style={{ backgroundColor: "rgba(49, 130, 206)", color: "white", display:"flex"}}>
-          <Col>
+      <main style={{width:"100%", display: "grid"}}>
+        <Row style={{ backgroundColor: "rgba(49, 130, 206)", color: "white"}}>
+          <Col style={{paddingLeft:"50px", paddingTop:"15px"}}>
             <Link href="/">
               <a>
                 <Image
@@ -444,7 +438,7 @@ if (!loading)
             </h1>
           </Col>
           <Col>
-            <div style={{ width: 60, height: 60 }}>
+            <div style={{ width: 60, height: 60 , paddingTop:"15px"}}>
               <CircularProgressbarWithChildren value={value}>
                 <MdSchool size={40} style={{ marginTop: -3, color: "white" }} />
                 <div style={{ fontSize: 12, marginTop: -7 }}>
@@ -453,8 +447,8 @@ if (!loading)
               </CircularProgressbarWithChildren>
             </div>
           </Col>
-        </div>
-        <div style={{display:"flex"}}>
+        </Row>
+        <Row>
           <Col>
             <div>
               <ReactPlayer
@@ -477,10 +471,7 @@ if (!loading)
                 onProgress={handleWatchComplete}
               />
             </div>
-           {/* <Row>
-              <Button onClick={seek}>Bookmark</Button>
-              <Button onClick={addNoteFunction}>Add Note</Button>
-           </Row> */}
+          
             <div>
 {/** TODO Needs to be placed in a component for readability i.e mobile tab and desktop tab */}
              {isBreakpoint?(
@@ -541,9 +532,9 @@ if (!loading)
                 Course Content
               </h2>
             </div>
-            <ul className="nav flex-column">
+            <Ul style={{paddingLeft:"0px"}}>
               {modules.map((module) => {
-                console.log("The modules as they are mapped", module)
+                
                 return (
                   <li className="nav-item" style={{borderBottom:"1px solid #D3D3D3"}} key={module._id}>
                     <h2
@@ -624,7 +615,7 @@ if (!loading)
                   </li>
                 );
               })}
-            </ul>
+            </Ul>
            
 
 
@@ -646,13 +637,10 @@ if (!loading)
         isPlaying={ handleIsPlaying }
         currentTime={ currentTime }
         sttJsonType={ sttJsonType }
-        //mediaUrl={ mediaUrl }
         isScrollIntoViewOn={ isScrollIntoViewOn }
-        //isPauseWhileTypingOn={ this.state.isPauseWhileTypingOn }
         ref={ timedTextEditorRef }
         handleAnalyticsEvents={ handleAnalyticsEvents }
-        //handleAutoSaveChanges={ this.handleAutoSaveChanges }
-        //title={ title }
+       
 />
                 </STabPanel>
               </STabs>):(
@@ -855,7 +843,7 @@ if (!loading)
                 Course Content
               </h2>
             </div>
-            <ul className="nav flex-column">
+            <Ul className="nav flex-column">
               {modules.map((module) => {
                 return (
                   <li className="nav-item" key={module._id}>
@@ -939,11 +927,11 @@ if (!loading)
                   </li>
                 );
               })}
-            </ul>
+            </Ul>
           </Col>):
           null}
           
-        </div>
+        </Row>
       </main>
     </>
   );
@@ -981,6 +969,17 @@ export async function getStaticProps({ params }) {
   };
 } 
 
+
+const Row = styled.div`
+display: flex
+`
+const Col = styled.div`
+flex: 1 0
+`
+const Ul = styled.ul`
+padding-left : 0px;
+list-style-type: none;
+`
 const STabs = styled(Tabs)`
   font-family: inherit;
   font-size: 14px;
